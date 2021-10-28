@@ -8,17 +8,19 @@ import java.io.File;
 
 class ExcelToCSVTest {
 
-    private ExcelToCSV excelToCSV = new ExcelToCSV();
+    public static final String PATH = "C:\\Users\\Leonardo\\Downloads\\";
+    private final ExcelToCSV excelToCSV = new ExcelToCSV();
 
     @Test
     @SneakyThrows
     void deveExtrairPlanilhas() {
-        excelToCSV.exportCSV("C:\\Users\\Leonardo\\Downloads\\ficha-teste.xlsx", "C:\\Users\\Leonardo\\Downloads\\teste");
+        excelToCSV.exportCSV(PATH.concat("ficha-teste.xlsx"), PATH.concat("teste"));
 
-        Assertions.assertDoesNotThrow(() -> {
-            File fileA = new File("C:\\Users\\Leonardo\\Downloads\\teste_Ficha A.csv");
-            File fileB = new File("C:\\Users\\Leonardo\\Downloads\\teste_Ficha B.csv");
-        });
+        File fileA = new File(PATH.concat("teste_Ficha A.csv"));
+        File fileB = new File(PATH.concat("teste_Ficha B.csv"));
+
+        Assertions.assertTrue(fileA.isFile());
+        Assertions.assertTrue(fileB.isFile());
 
     }
 
